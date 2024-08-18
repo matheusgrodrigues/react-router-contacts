@@ -17,4 +17,4 @@ Aplicativo pequeno, mas rico em recursos, que permite que você acompanhe seus c
    -  Gerenciamento de pilha do histórico.
    -  Interface de usuário otimista.
 
-Entre outros...
+> **Obs**: Códigos e exemplos foram retirados da [pagina de tutorial do React Router DOM v6](https://reactrouter.com/en/main/start/tutorial).
