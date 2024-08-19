@@ -18,6 +18,8 @@ export default function RootLayout() {
 
    const inputSearchRef = useRef(null);
 
+   const searching = navigation.location && new URLSearchParams(navigation.location.search).has("q");
+
    useEffect(() => {
       inputSearchRef.current.value = q;
    }, [q]);
@@ -37,10 +39,14 @@ export default function RootLayout() {
                      defaultValue={q}
                      ref={inputSearchRef}
                      onChange={(event) => {
-                        submit(event.currentTarget.form);
+                        const isFirstSearch = q == null;
+                        submit(event.currentTarget.form, {
+                           replace: !isFirstSearch,
+                        });
                      }}
+                     className={searching ? "loading" : ""}
                   />
-                  <div id="search-spinner" aria-hidden hidden={true} />
+                  <div id="search-spinner" aria-hidden hidden={!searching} />
                   <div className="sr-only" aria-live="polite"></div>
                </Form>
                <Form method="post">
