@@ -1,7 +1,18 @@
-import { Form, Link, Outlet, useLoaderData } from "react-router-dom";
+import { Form, NavLink, Outlet, useLoaderData, useNavigation } from "react-router-dom";
+
+export const Index = () => {
+   return (
+      <p id="zero-state">
+         This is a demo for React Router.
+         <br />
+         Check out <a href="https://reactrouter.com">the docs at reactrouter.com</a>.
+      </p>
+   );
+};
 
 export default function RootLayout() {
    const { contacts } = useLoaderData();
+   const navigation = useNavigation();
 
    return (
       <>
@@ -22,7 +33,12 @@ export default function RootLayout() {
                   <ul>
                      {contacts.map((contact) => (
                         <li key={contact.id}>
-                           <Link to={`contacts/${contact.id}`}>
+                           <NavLink
+                              to={`contacts/${contact.id}`}
+                              className={({ isActive, isPending }) =>
+                                 isActive ? "active" : isPending ? "pending" : ""
+                              }
+                           >
                               {contact.first || contact.last ? (
                                  <>
                                     {contact.first} {contact.last}
@@ -31,7 +47,7 @@ export default function RootLayout() {
                                  <i>No Name</i>
                               )}{" "}
                               {contact.favorite && <span>★</span>}
-                           </Link>
+                           </NavLink>
                         </li>
                      ))}
                   </ul>
@@ -42,7 +58,7 @@ export default function RootLayout() {
                )}
             </nav>
          </div>
-         <div id="detail">
+         <div id="detail" className={navigation.state === "loading" ? "loading" : ""}>
             <Outlet />
          </div>
       </>
