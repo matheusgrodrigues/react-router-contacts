@@ -5,10 +5,8 @@ import RootLayout, { Index } from "./app/layout";
 import EditContact from "./app/contact/edit";
 import Contact from "./app/contact";
 
-import { contactLoader, rootLoader } from "./app/lib/loader";
-import { favoriteAction, rootAction } from "./app/lib/action";
-import { editAction } from "./app/contact/edit/lib/action";
-import { deleteContactAction } from "./app/contact/lib/action";
+import { rootLoader, contactLoader } from "./app/lib/loader";
+import { rootAction, deleteContactAction, editAction, favoriteAction } from "./app/lib/action";
 
 const router = createBrowserRouter([
    {
@@ -47,8 +45,7 @@ const router = createBrowserRouter([
 
 export default router;
 
-/*
-
+/* -> Outra forma com JSX
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route
